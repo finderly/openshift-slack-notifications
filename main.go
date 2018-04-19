@@ -134,7 +134,7 @@ func watchEvents(clientset *kubernetes.Clientset) {
 }
 
 func buildCachedEvent(event *v1.Event) (string, string) {
-	// namespace_containernamefrompodname_message - special case for readiness and liveness messages
+	// namespace_containernamefrompodname_message
 	var msgc []string
 
 	//store namespace
@@ -142,6 +142,7 @@ func buildCachedEvent(event *v1.Event) (string, string) {
 
 	// deduct container name
 	s := strings.Split(event.InvolvedObject.Name, "-")
+
 	//store container name
 	msgc = append(msgc, s[0])
 
